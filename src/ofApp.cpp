@@ -16,6 +16,11 @@ void ofApp::setup() {
 		else if (keys[i] == "density") {
 			cloudDensity = ofToInt(ofxArgParser::getValue(keys[i]));
 		}
+		else if (keys[i] == "position") {
+			string pos = ofxArgParser::getValue(keys[i]);
+			std::vector<string> xy = ofSplitString(pos, ",");
+			ofSetWindowPosition(ofToInt(xy[0]), ofToInt(xy[1]));
+		}
 	}
 
 
@@ -93,9 +98,9 @@ void ofApp::draw(){
 		}
 		ofSetColor(0, 255, 0);
 		for (int i = 0; i < keys.size(); i++){
-			ofDrawBitmapString(keys[i] + ": " + ofxArgParser::getValue(keys[i]), 10, ofGetHeight() - 20 - 20 * i);
+			ofDrawBitmapStringHighlight(keys[i] + ": " + ofxArgParser::getValue(keys[i]), 10, ofGetHeight() - 20 - 20 * i);
 		}
-		ofDrawBitmapString(ofToString((int)ofGetFrameRate()), 10, 20);
+		ofDrawBitmapStringHighlight(ofToString((int)ofGetFrameRate()), 10, 20);
 }
 
 //--------------------------------------------------------------
